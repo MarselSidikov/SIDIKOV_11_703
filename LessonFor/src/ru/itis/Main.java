@@ -9,10 +9,13 @@ public class Main {
 
         int a = scanner.nextInt();
         int b = scanner.nextInt();
-        int i = a;
-        while (i <= b) {
+//        int i = a;
+//        while (i <= b) {
+//            System.out.print(i + " ");
+//            i++;
+//        }
+        for (int i = a; i <= b; i++) {
             System.out.print(i + " ");
-            i++;
         }
     }
 }
