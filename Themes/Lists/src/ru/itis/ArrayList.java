@@ -7,21 +7,27 @@ package ru.itis;
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
  */
-public class ArrayList implements List {
+
+import java.util.Iterator;
+
+/**
+ * Реализация List на основе массива
+ */
+public class ArrayList<T> implements List<T> {
 
     private static final int DEFAULT_SIZE = 10;
 
-    private Object elements[];
+    private T elements[];
 
     private int count;
 
     public ArrayList() {
-        this.elements = new Object[DEFAULT_SIZE];
+        this.elements = (T[])(new Object[DEFAULT_SIZE]);
         this.count = 0;
     }
 
     @Override
-    public int indexOf(Object element) {
+    public int indexOf(T element) {
         for (int i = 0; i < count; i++) {
             if (element.equals(elements[i])) {
                 return i;
@@ -31,19 +37,19 @@ public class ArrayList implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public T get(int index) {
         if (index >= 0 && index < count) {
             return elements[index];
         } else throw new IllegalArgumentException();
     }
 
     @Override
-    public void addToBegin(Object element) {
+    public void addToBegin(T element) {
 
     }
 
     @Override
-    public void add(Object element) {
+    public void add(T element) {
         if (count < elements.length) {
             this.elements[count++] = element;
         } else throw new IllegalArgumentException();
@@ -62,5 +68,32 @@ public class ArrayList implements List {
     @Override
     public int size() {
         return count;
+    }
+
+    // вложенный класс
+    private class ArrayListIterator implements Iterator<T> {
+        // указывает на текущий индекс
+        private int currentIndex;
+
+        public ArrayListIterator() {
+            this.currentIndex = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < count;
+        }
+
+        @Override
+        public T next() {
+            T result = elements[currentIndex];
+            currentIndex++;
+            return result;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayListIterator();
     }
 }

@@ -7,13 +7,24 @@ package ru.itis;
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
  */
-public class LinkedList implements List{
 
-    private static class Node {
-        Object value;
+import java.util.Iterator;
+
+/**
+ * Реализация списка на основе узлов (связного списка)
+ */
+public class LinkedList<T> implements List<T> {
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    private class Node {
+        T value;
         Node next;
 
-        Node(Object value) {
+        Node(T value) {
             this.value = value;
         }
     }
@@ -28,23 +39,34 @@ public class LinkedList implements List{
     }
 
     @Override
-    public int indexOf(Object element) {
+    public int indexOf(T element) {
         return 0;
     }
 
     @Override
-    public Object get(int index) {
-        return null;
+    public T get(int index) {
+        if (index >= count) {
+            throw new IllegalArgumentException();
+        }
+        Node current = this.head;
+        int i = 0;
+
+        while (i < index) {
+            current = current.next;
+            i++;
+        }
+
+        return current.value;
     }
 
     // TODO: реализовать
     @Override
-    public void addToBegin(Object element) {
+    public void addToBegin(T element) {
 
     }
 
     @Override
-    public void add(Object element) {
+    public void add(T element) {
 //        Node newNode = new Node(element);
 //
 //        if (head == null) {
@@ -73,13 +95,13 @@ public class LinkedList implements List{
     }
 
     @Override
-    public void remove(Object element) {
+    public void remove(T element) {
 
     }
 
     // TODO: реализовать
     @Override
-    public boolean contains(Object element) {
+    public boolean contains(T element) {
         return false;
     }
 
