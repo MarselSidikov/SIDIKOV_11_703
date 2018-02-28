@@ -8,6 +8,7 @@ package ru.itis;
  * @version v1.0
  */
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -41,6 +42,10 @@ public class ArrayList<T> implements List<T> {
         if (index >= 0 && index < count) {
             return elements[index];
         } else throw new IllegalArgumentException();
+    }
+
+    private void set(int index, T element) {
+        elements[index] = element;
     }
 
     @Override
@@ -96,4 +101,30 @@ public class ArrayList<T> implements List<T> {
     public Iterator<T> iterator() {
         return new ArrayListIterator();
     }
+
+    public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
+        for (int i = list.size() - 1; i >= 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (list.get(j).compareTo(list.get(j+1)) > 0) {
+                    E temp = list.get(j);
+                    list.set(j, list.get(j+1));
+                    list.set(j+1, temp);
+                }
+            }
+        }
+    }
+
+    public static <E> void sort(ArrayList<E> list, Comparator<E> comparator) {
+        for (int i = list.size() - 1; i >= 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (comparator.compare(list.get(j), list.get(j+1)) > 0) {
+                    E temp = list.get(j);
+                    list.set(j, list.get(j+1));
+                    list.set(j+1, temp);
+                }
+            }
+        }
+    }
+
+
 }
