@@ -1,5 +1,7 @@
 package ru.itis;
 
+import java.util.HashMap;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,5 +17,7 @@ public class Main {
         System.out.println(map.get("Irina"));
         System.out.println(map.get("Arina"));
         System.out.println(map.get("Dasha"));
+
+        HashMap
     }
 }

@@ -12,8 +12,19 @@ public class HashMapImpl<K, V> implements Map<K, V> {
     private V map[];
 
     public HashMapImpl() {
-        map = (V[])new Object[10];
+        map = (V[])new Object[0];
     }
+
+    private static class Node<Key, Value> {
+        Key key;
+        Value value;
+
+        public Node() {
+
+        }
+    }
+
+    private Node<K, V> map[] = new Node[10];
 
     @Override
     public void put(K key, V value) {
