@@ -41,7 +41,7 @@ import java.util.Arrays;
  *
  * Используется для файлов обычно нетекстовых
  */
-public class MainInputStream {
+public class MainFileInputStream {
 
     public static void main(String[] args) {
         try {
