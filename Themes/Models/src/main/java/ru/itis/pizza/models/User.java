@@ -24,7 +24,8 @@ public class User {
     private Long id;
 
     private String email;
-    private String password;
+    private String hashPassword;
+    private String rawPassword;
 
     private String firstName;
     private String lastName;
@@ -34,7 +35,7 @@ public class User {
 
 //    private User(Builder builder) {
 //        this.email = builder.email;
-//        this.password = builder.password;
+//        this.hashPassword = builder.hashPassword;
 //        this.address = builder.address;
 //        this.firstName = builder.firstName;
 //        this.lastName = builder.lastName;
@@ -45,7 +46,7 @@ public class User {
 //        private Long id;
 //
 //        private String email;
-//        private String password;
+//        private String hashPassword;
 //
 //        private String firstName;
 //        private String lastName;
@@ -58,8 +59,8 @@ public class User {
 //            return this;
 //        }
 //
-//        public Builder password(String password) {
-//            this.password = password;
+//        public Builder hashPassword(String hashPassword) {
+//            this.hashPassword = hashPassword;
 //            return this;
 //        }
 //
@@ -108,12 +109,12 @@ public class User {
 //        this.email = email;
 //    }
 //
-//    public String getPassword() {
-//        return password;
+//    public String getHashPassword() {
+//        return hashPassword;
 //    }
 //
-//    public void setPassword(String password) {
-//        this.password = password;
+//    public void setHashPassword(String hashPassword) {
+//        this.hashPassword = hashPassword;
 //    }
 //
 //    public String getFirstName() {
@@ -155,7 +156,7 @@ public class User {
 //        User user = (User) o;
 //        return Objects.equals(id, user.id) &&
 //                Objects.equals(email, user.email) &&
-//                Objects.equals(password, user.password) &&
+//                Objects.equals(hashPassword, user.hashPassword) &&
 //                Objects.equals(firstName, user.firstName) &&
 //                Objects.equals(lastName, user.lastName) &&
 //                Objects.equals(address, user.address) &&
@@ -164,7 +165,7 @@ public class User {
 //
 //    @Override
 //    public int hashCode() {
-//        return Objects.hash(id, email, password, firstName, lastName, address, orders);
+//        return Objects.hash(id, email, hashPassword, firstName, lastName, address, orders);
 //    }
 //
 //    @Override
@@ -172,7 +173,7 @@ public class User {
 //        return "User{" +
 //                "id=" + id +
 //                ", email='" + email + '\'' +
-//                ", password='" + password + '\'' +
+//                ", hashPassword='" + hashPassword + '\'' +
 //                ", firstName='" + firstName + '\'' +
 //                ", lastName='" + lastName + '\'' +
 //                ", address='" + address + '\'' +

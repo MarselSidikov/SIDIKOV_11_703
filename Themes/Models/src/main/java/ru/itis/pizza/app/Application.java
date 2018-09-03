@@ -1,6 +1,10 @@
 package ru.itis.pizza.app;
 
 import ru.itis.pizza.models.User;
+import ru.itis.pizza.repositories.UsersRepository;
+import ru.itis.pizza.repositories.UsersRepositoryListImpl;
+import ru.itis.pizza.services.UsersService;
+import ru.itis.pizza.services.UsersServiceImpl;
 
 /**
  * 03.09.2018
@@ -11,13 +15,22 @@ import ru.itis.pizza.models.User;
  */
 public class Application {
     public static void main(String[] args) {
+
+        UsersRepository usersRepository = new UsersRepositoryListImpl();
+        UsersService usersService = new UsersServiceImpl(usersRepository);
+
         User user = User.builder()
                 .email("sidikov.marsel@gmail.com")
                 .firstName("Marsel")
                 .lastName("Sidikov")
-                .password("qwerty007")
+                .rawPassword("qwerty007")
                 .build();
 
-        System.out.println(user);
+        usersService.register(user);
+
+        user.setRawPassword("qwerty008");
+
+        System.out.println(usersService.isRegistered(user));
+        System.out.println(user.getHashPassword());
     }
 }
