@@ -16,7 +16,7 @@ public class ApplicationJdbcDemo {
     private static final String PASSWORD = "qwerty007";
 
     public static void main(String[] args) throws SQLException {
-        Connection connection = connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("select id, first_name from pizza_user");
 //        resultSet.next();
