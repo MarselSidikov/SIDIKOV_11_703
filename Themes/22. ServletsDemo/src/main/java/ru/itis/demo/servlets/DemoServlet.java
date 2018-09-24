@@ -1,5 +1,6 @@
 package ru.itis.demo.servlets;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,15 +23,28 @@ public class DemoServlet extends HttpServlet {
         try {
             response.setHeader("Content-Type", "text/html");
             writer = response.getWriter();
-            writer.write("<form>" +
-                    "  First name:<br>" +
-                    "  <input type='text' name='firstname' value='Mickey'><br>" +
-                    "  Last name:<br>" +
-                    "  <input type='text' name='lastname' value='Mouse'><br><br>" +
-                    "  <input type='submit' value='Submit'>" +
+            writer.write("<form method='post'>" +
+                    "  Login:<br>" +
+                    "  <input type='text' name='login' placeholder='Login'><br>" +
+                    "  Password:<br>" +
+                    "  <input type='password' name='password' placeholder='Password'><br><br>" +
+                    "  <input type='submit' value='Login'>" +
                     "</form>");
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+
+        PrintWriter writer = response.getWriter();
+        response.setHeader("Content-Type", "text/html");
+        writer.write("<h4>Hello, " + login + "</h4>");
+        writer.write("<h4>Your password is </h4>");
+        writer.write("<h1 style='color:red'>" + password + "</h1>");
+
     }
 }
