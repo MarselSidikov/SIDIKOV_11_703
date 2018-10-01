@@ -2,6 +2,8 @@ package ru.itis.pizza.services;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.itis.pizza.forms.LoginForm;
+import ru.itis.pizza.forms.UserForm;
 import ru.itis.pizza.models.User;
 import ru.itis.pizza.repositories.UsersRepository;
 
@@ -24,23 +26,26 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void register(User user) {
-        user.setHashPassword(passwordEncoder.encode(user.getRawPassword()));
-        user.setRawPassword(null);
+    public void register(UserForm userForm) {
+        User user = User.builder()
+                .email(userForm.getEmail())
+                .firstName(userForm.getFirstName())
+                .lastName(userForm.getLastName())
+                .hashPassword(passwordEncoder.encode(userForm.getPassword()))
+                .build();
         usersRepository.save(user);
     }
 
     @Override
     public boolean isRegistered(User user) {
-        User existedUser = usersRepository.findOneByEmail(user.getEmail());
-        if (existedUser != null) {
-            if (passwordEncoder.matches(user.getRawPassword(),
-                    existedUser.getHashPassword())) {
-                return true;
-            } else {
-                return false;
-            }
-        }
         return false;
+    }
+
+    @Override
+    public void login(LoginForm loginForm) {
+        User user = usersRepository.findOneByEmail(loginForm.getEmail());
+        if (!passwordEncoder.matches(loginForm.getPassword(), user.getHashPassword())) {
+             throw new IllegalArgumentException("Wrong password or email");
+        }
     }
 }
