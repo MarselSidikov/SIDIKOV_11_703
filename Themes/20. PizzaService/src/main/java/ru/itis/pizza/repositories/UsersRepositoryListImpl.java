@@ -35,4 +35,9 @@ public class UsersRepositoryListImpl implements UsersRepository {
     public User find(Long id) {
         return null;
     }
+
+    @Override
+    public List<User> findAll() {
+        return null;
+    }
 }

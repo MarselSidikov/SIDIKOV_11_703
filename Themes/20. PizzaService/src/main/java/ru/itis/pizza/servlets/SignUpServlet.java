@@ -6,6 +6,7 @@ import ru.itis.pizza.repositories.UsersRepository;
 import ru.itis.pizza.repositories.UsersRepositoryJdbcImpl;
 import ru.itis.pizza.services.UsersService;
 import ru.itis.pizza.services.UsersServiceImpl;
+import ru.itis.pizza.transfer.UserDto;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.List;
 
 /**
  * 01.10.2018
@@ -45,19 +47,22 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        response.setHeader("Content-Type", "text/html");
-        writer.write("<form method='post'>" +
-                "  Email:<br>" +
-                "  <input type='text' name='email' placeholder='email'><br>" +
-                "  Password:<br>" +
-                "  <input type='password' name='password' placeholder='Password'><br><br>" +
-                "  First Name:<br>" +
-                "  <input type='text' name='firstName' placeholder='First Name'><br><br>" +
-                "  Last Name:<br>" +
-                "  <input type='text' name='lastName' placeholder='Last Name'><br><br>" +
-                "  <input type='submit' value='Sign Up'>" +
-                "</form>");
+//        PrintWriter writer = response.getWriter();
+//        response.setHeader("Content-Type", "text/html");
+//        writer.write("<form method='post'>" +
+//                "  Email:<br>" +
+//                "  <input type='text' name='email' placeholder='email'><br>" +
+//                "  Password:<br>" +
+//                "  <input type='password' name='password' placeholder='Password'><br><br>" +
+//                "  First Name:<br>" +
+//                "  <input type='text' name='firstName' placeholder='First Name'><br><br>" +
+//                "  Last Name:<br>" +
+//                "  <input type='text' name='lastName' placeholder='Last Name'><br><br>" +
+//                "  <input type='submit' value='Sign Up'>" +
+//                "</form>");
+        List<UserDto> allUsers = service.getAllUsers();
+        request.setAttribute("users", allUsers);
+        request.getRequestDispatcher("jsp/signUp.jsp").forward(request, response);
     }
 
     @Override

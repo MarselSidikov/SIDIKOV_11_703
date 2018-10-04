@@ -6,6 +6,11 @@ import ru.itis.pizza.forms.LoginForm;
 import ru.itis.pizza.forms.UserForm;
 import ru.itis.pizza.models.User;
 import ru.itis.pizza.repositories.UsersRepository;
+import ru.itis.pizza.transfer.UserDto;
+
+import java.util.List;
+
+import static ru.itis.pizza.transfer.UserDto.from;
 
 /**
  * 03.09.2018
@@ -39,6 +44,12 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public boolean isRegistered(User user) {
         return false;
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() {
+        List<User> users = usersRepository.findAll();
+        return from(users);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package ru.itis.pizza.repositories;
 
+import java.util.List;
+
 /**
  * 03.09.2018
  * CrudRepository
@@ -10,4 +12,5 @@ package ru.itis.pizza.repositories;
 public interface CrudRepository<T> {
     void save(T model);
     T find(Long id);
+    List<T> findAll();
 }

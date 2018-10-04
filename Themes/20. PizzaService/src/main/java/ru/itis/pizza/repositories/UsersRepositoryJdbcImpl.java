@@ -1,12 +1,12 @@
 package ru.itis.pizza.repositories;
 
 import lombok.SneakyThrows;
+import ru.itis.pizza.mapper.RowMapper;
 import ru.itis.pizza.models.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 17.09.2018
@@ -31,9 +31,28 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
     private static final String SQL_SELECT_BY_EMAIL =
             "select * from pizza_user where email = ?;";
 
+    //language=SQL
+    private static final String SQL_SELECT_ALL =
+            "select * from pizza_user";
+
     public UsersRepositoryJdbcImpl(Connection connection) {
         this.connection = connection;
     }
+
+    private RowMapper<User> userRowMapper = row -> {
+        try {
+            return User.builder()
+                    .id(row.getLong("id"))
+                    .hashPassword(row.getString("hash_password"))
+                    .address(row.getString("address"))
+                    .email(row.getString("email"))
+                    .firstName(row.getString("first_name"))
+                    .lastName(row.getString("last_name"))
+                    .build();
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    };
 
     @Override
     @SneakyThrows
@@ -43,13 +62,7 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         ResultSet resultSet = statement.executeQuery();
         resultSet.next();
 
-        return User.builder()
-                .id(resultSet.getLong("id"))
-                .firstName(resultSet.getString("first_name"))
-                .lastName(resultSet.getString("last_name"))
-                .hashPassword(resultSet.getString("hash_password"))
-                .email(resultSet.getString("email"))
-                .build();
+        return userRowMapper.mapRow(resultSet);
     }
 
     @Override
@@ -73,13 +86,20 @@ public class UsersRepositoryJdbcImpl implements UsersRepository {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         resultSet.next();
-        return User.builder()
-                .id(resultSet.getLong("id"))
-                .hashPassword(resultSet.getString("hash_password"))
-                .address(resultSet.getString("address"))
-                .email(resultSet.getString("email"))
-                .firstName(resultSet.getString("first_name"))
-                .lastName(resultSet.getString("last_name"))
-                .build();
+        return userRowMapper.mapRow(resultSet);
+    }
+
+    @Override
+    @SneakyThrows
+    public List<User> findAll() {
+        PreparedStatement statement = connection.prepareStatement(SQL_SELECT_ALL);
+        ResultSet resultSet = statement.executeQuery();
+        List<User> users = new ArrayList<>();
+
+        while (resultSet.next()) {
+            User user = userRowMapper.mapRow(resultSet);
+            users.add(user);
+        }
+        return users;
     }
 }
