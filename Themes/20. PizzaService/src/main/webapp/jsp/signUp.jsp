@@ -7,18 +7,21 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
 </head>
+<a href="/signUp?lan=RU">RU</a>
+<br>
+<a href="/signUp?lan=EN">EN</a>
 <body>
 <div class="form-style-3">
     <form method='post'>
-        <label for='email'><span>Email:</span></label>
-        <input type='text' id='email' name='email' placeholder='email'>
-        <label for='password'><span>Password:</span></label>
-        <input type='password' id='password' name='password' placeholder='Password'><br><br>
-        <label for='firstName'><span>First Name:</span></label>
-        <input type='text' id='firstName' name='firstName' placeholder='First Name'><br><br>
-        <label for='lastName'><span>Last Name:</span></label>
-        <input type='text' id='lastName' name='lastName' placeholder='Last Name'><br><br>
-        <input type='submit' value='Sign Up'>
+        <label for='email'><span>${localization.get("signup.email")}</span></label>
+        <input type='text' id='email' name='email' placeholder='${localization.get("signup.email")}'>
+        <label for='password'><span>${localization.get("signup.password")}</span></label>
+        <input type='password' id='password' name='password' placeholder='${localization.get("signup.password")}'><br><br>
+        <label for='firstName'><span>${localization.get("signup.firstname")}</span></label>
+        <input type='text' id='firstName' name='firstName' placeholder='${localization.get("signup.firstname")}'><br><br>
+        <label for='lastName'><span>${localization.get("signup.lastname")}</span></label>
+        <input type='text' id='lastName' name='lastName' placeholder='${localization.get("signup.lastname")}'><br><br>
+        <input type='submit' value='${localization.get("signup.signup")}'>
     </form>
 </div>
 <div>
