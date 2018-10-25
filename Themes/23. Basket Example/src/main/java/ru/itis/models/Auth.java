@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 22.10.2018
- * User
+ * 25.10.2018
+ * Auth
  *
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class Auth {
+
     private Long id;
-    private String name;
-    private String passwordHash;
-    private Integer age;
+    private String cookieValue;
+    private User user;
 }

@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ru.itis.models.User;
@@ -28,12 +29,19 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_SELECT_ALL_USERS =
             "select * from shop_user";
 
-    private RowMapper<User> userRowMapper = (resultSet, i) -> {
-        return User.builder()
-                .id(resultSet.getLong("id"))
-                .name(resultSet.getString("name"))
-                .build();
-    };
+    //language=SQL
+    private static final String SQL_INSERT =
+            "insert into shop_user(name, password_hash, age) values (?, ?, ?)";
+
+    //language=SQL
+    private static final String SQL_SELECT_BY_NAME =
+            "select * from shop_user where name = ?";
+
+    private RowMapper<User> userRowMapper = (resultSet, i) -> User.builder()
+            .id(resultSet.getLong("id"))
+            .name(resultSet.getString("name"))
+            .passwordHash(resultSet.getString("password_hash"))
+            .build();
 
     public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -52,7 +60,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Override
     public void save(User model) {
-
+        jdbcTemplate.update(SQL_INSERT, model.getName(), model.getPasswordHash(), model.getAge());
     }
 
     @Override
@@ -63,5 +71,14 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     @Override
     public void update(User model) {
 
+    }
+
+    @Override
+    public User findByName(String name) {
+        try {
+            return jdbcTemplate.queryForObject(SQL_SELECT_BY_NAME, userRowMapper, name);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
