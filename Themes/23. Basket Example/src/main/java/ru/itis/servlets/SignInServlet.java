@@ -50,13 +50,18 @@ public class SignInServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // обрабатываем POST-запрос, вытаскиваем из запроса логин и пароль
         SignInForm form = SignInForm.builder()
                 .name(req.getParameter("name"))
                 .password(req.getParameter("password"))
                 .build();
-
+        // передаем логин и пароль сервисам и получаем куку, если такой пользователь
+        // в базе обнаружен
         String cookieValue = usersService.signIn(form);
+
+        // если пользователь был в базе и его кука не была нулевой
         if (cookieValue != null) {
+            // добавляем эту куку в ответ
             Cookie auth = new Cookie("auth", cookieValue);
             resp.addCookie(auth);
         } else {
