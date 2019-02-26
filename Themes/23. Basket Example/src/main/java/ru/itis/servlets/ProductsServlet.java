@@ -18,7 +18,7 @@ import java.util.List;
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
  */
-@WebServlet("/products")
+//@WebServlet("/products")
 public class ProductsServlet extends HttpServlet {
 
     private List<Integer> ids = new ArrayList<>();

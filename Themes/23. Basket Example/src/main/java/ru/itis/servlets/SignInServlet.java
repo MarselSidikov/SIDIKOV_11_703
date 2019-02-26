@@ -29,7 +29,7 @@ import java.util.UUID;
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
  */
-@WebServlet("/signIn")
+//@WebServlet("/signIn")
 public class SignInServlet extends HttpServlet {
 
     private UsersService usersService;
@@ -37,10 +37,7 @@ public class SignInServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         ApplicationContext context = (ApplicationContext) config.getServletContext().getAttribute("context");
-        DataSource dataSource = context.getBean(DataSource.class);
-        UsersRepository usersRepository = context.getBean(UsersRepository.class);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        usersService = new UsersServiceImpl(usersRepository, authRepository);
+        usersService = context.getBean(UsersService.class);
     }
 
     @Override

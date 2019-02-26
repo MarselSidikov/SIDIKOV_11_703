@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebListener;
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
  */
-@WebListener
+//@WebListener
 public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {

@@ -1,5 +1,7 @@
 package ru.itis;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * 07.02.2019
  * ATM
@@ -9,11 +11,12 @@ package ru.itis;
  */
 public class ATM {
     private int sum;
+
+    @Autowired
     private Terminal terminal;
 
-    public ATM(int sum, Terminal terminal) {
+    public ATM(int sum) {
         this.sum = sum;
-        this.terminal = terminal;
     }
 
     public int giveMoney(Card card, String password, int amount) {

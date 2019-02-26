@@ -1,5 +1,6 @@
 package ru.itis.servlets;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.forms.SignUpForm;
 import ru.itis.repositories.AuthRepository;
@@ -9,6 +10,7 @@ import ru.itis.repositories.UsersRepositoryJdbcTemplateImpl;
 import ru.itis.services.UsersService;
 import ru.itis.services.UsersServiceImpl;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,21 +25,15 @@ import java.io.IOException;
  * @author Sidikov Marsel (First Software Engineering Platform)
  * @version v1.0
  */
-@WebServlet("/signUp")
+//@WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
 
     private UsersService usersService;
 
     @Override
-    public void init() throws ServletException {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("qwerty007");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/shop");
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        usersService = new UsersServiceImpl(usersRepository, authRepository);
+    public void init(ServletConfig config) throws ServletException {
+        ApplicationContext context = (ApplicationContext) config.getServletContext().getAttribute("context");
+        usersService = context.getBean(UsersService.class);
     }
 
     @Override

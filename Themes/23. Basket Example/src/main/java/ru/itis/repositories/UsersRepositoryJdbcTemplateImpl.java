@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,6 +20,7 @@ import java.util.List;
  */
 public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     //language=SQL
@@ -42,10 +44,6 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
             .name(resultSet.getString("name"))
             .passwordHash(resultSet.getString("password_hash"))
             .build();
-
-    public UsersRepositoryJdbcTemplateImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     @Override
     public List<User> findAll() {

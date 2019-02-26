@@ -1,5 +1,6 @@
 package ru.itis.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import ru.itis.forms.SignInForm;
@@ -9,6 +10,7 @@ import ru.itis.repositories.AuthRepository;
 import ru.itis.repositories.UsersRepository;
 import ru.itis.models.User;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,16 +22,14 @@ import java.util.UUID;
  */
 public class UsersServiceImpl implements UsersService {
 
+    @Autowired
     private PasswordEncoder encoder;
 
+    @Autowired
     private UsersRepository usersRepository;
-    private AuthRepository authRepository;
 
-    public UsersServiceImpl(UsersRepository usersRepository, AuthRepository authRepository) {
-        this.usersRepository = usersRepository;
-        this.authRepository = authRepository;
-        this.encoder = new BCryptPasswordEncoder();
-    }
+    @Autowired
+    private AuthRepository authRepository;
 
     @Override
     public void signUp(SignUpForm form) {
@@ -67,5 +67,10 @@ public class UsersServiceImpl implements UsersService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return usersRepository.findAll();
     }
 }

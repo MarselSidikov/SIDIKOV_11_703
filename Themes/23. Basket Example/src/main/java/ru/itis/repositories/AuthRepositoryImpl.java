@@ -1,5 +1,6 @@
 package ru.itis.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -19,8 +20,8 @@ import java.util.List;
  */
 public class AuthRepositoryImpl implements AuthRepository {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
     //language=SQL
     private static final String SQL_INSERT =
             "insert into auth(user_id, cookie_value) values (?, ?)";
@@ -28,10 +29,6 @@ public class AuthRepositoryImpl implements AuthRepository {
     //language=SQL
     private static final String SQL_SELECT_BY_COOKIE_VALUE =
             "select * from auth where cookie_value = ?";
-
-    public AuthRepositoryImpl(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     private RowMapper<Auth> authRowMapper = new RowMapper<Auth>() {
         @Override

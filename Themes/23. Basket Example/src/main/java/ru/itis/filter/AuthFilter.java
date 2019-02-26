@@ -1,5 +1,6 @@
 package ru.itis.filter;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itis.repositories.AuthRepository;
 import ru.itis.repositories.AuthRepositoryImpl;
@@ -13,6 +14,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
@@ -23,21 +25,15 @@ import java.io.IOException;
  * @version v1.0
  */
 // данный фильтр обрабатывает все запросы, которые приходят на url - /shop
-@WebFilter("/shop")
+//@WebFilter("/shop")
 public class AuthFilter implements Filter {
 
     private UsersService usersService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("qwerty007");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/shop");
-        UsersRepository usersRepository = new UsersRepositoryJdbcTemplateImpl(dataSource);
-        AuthRepository authRepository = new AuthRepositoryImpl(dataSource);
-        usersService = new UsersServiceImpl(usersRepository, authRepository);
+        ApplicationContext context = (ApplicationContext) filterConfig.getServletContext().getAttribute("context");
+        usersService = context.getBean(UsersService.class);
     }
 
     @Override
