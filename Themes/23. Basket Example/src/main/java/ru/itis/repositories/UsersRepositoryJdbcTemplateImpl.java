@@ -35,10 +35,6 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     private static final String SQL_INSERT =
             "insert into shop_user(name, password_hash, age) values (?, ?, ?)";
 
-    //language=SQL
-    private static final String SQL_SELECT_BY_NAME =
-            "select * from shop_user where name = ?";
-
     private RowMapper<User> userRowMapper = (resultSet, i) -> User.builder()
             .id(resultSet.getLong("id"))
             .name(resultSet.getString("name"))
@@ -69,14 +65,5 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     @Override
     public void update(User model) {
 
-    }
-
-    @Override
-    public User findByName(String name) {
-        try {
-            return jdbcTemplate.queryForObject(SQL_SELECT_BY_NAME, userRowMapper, name);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
     }
 }
