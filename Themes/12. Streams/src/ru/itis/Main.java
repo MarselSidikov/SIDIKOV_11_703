@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) {
-	    IsUpperPredicateImpl predicate = new IsUpperPredicateImpl();
+        IsUpperPredicateImpl predicate = new IsUpperPredicateImpl();
 
         System.out.println(predicate.test("Marsel"));
         System.out.println(predicate.test("car"));

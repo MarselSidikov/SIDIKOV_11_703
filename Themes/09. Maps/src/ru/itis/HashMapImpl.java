@@ -12,7 +12,7 @@ public class HashMapImpl<K, V> implements Map<K, V> {
     private V map[];
 
     public HashMapImpl() {
-        map = (V[])new Object[0];
+        map = (V[]) new Object[0];
     }
 
     private static class Node<Key, Value> {

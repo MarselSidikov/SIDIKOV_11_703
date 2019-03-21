@@ -16,6 +16,6 @@ public class MainReadOneByteOnCyrillic {
 
         int code = inputStream.read();
 
-        System.out.println((char)code);
+        System.out.println((char) code);
     }
 }

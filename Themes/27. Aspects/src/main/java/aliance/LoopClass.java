@@ -13,7 +13,7 @@ public class LoopClass {
 
     @SneakyThrows
     public void longLoop() {
-        int delay = (int)(Math.random() * 1000);
+        int delay = (int) (Math.random() * 1000);
         System.out.println("Delay time " + delay);
         Thread.sleep(delay);
     }

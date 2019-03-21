@@ -9,5 +9,6 @@ package ru.itis;
  */
 public interface Terminal {
     void messageOnNoMoney();
+
     void messageOnIncorrectPassword();
 }

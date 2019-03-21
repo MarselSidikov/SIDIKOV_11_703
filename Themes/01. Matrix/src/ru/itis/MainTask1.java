@@ -28,6 +28,7 @@ public class MainTask1 {
 
         return mins;
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int N, M;

@@ -28,7 +28,7 @@ public class CarProxy extends Car {
         carBeforeAdvice.before();
         if (carMethodAdvice == null) {
             inner.go();
-        } else  {
+        } else {
             carMethodAdvice.invoke();
         }
         carAfterAdvice.after();

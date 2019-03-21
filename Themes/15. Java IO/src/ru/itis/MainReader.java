@@ -12,13 +12,13 @@ import java.io.*;
 
 /**
  * Reader - абстрактный класс, имеющий метод
- *
+ * <p>
  * public int read() считывающий не один байт, а символ
  */
 public class MainReader {
     public static void main(String[] args) throws IOException {
         Reader reader = new InputStreamReader(System.in);
         int code = reader.read();
-        System.out.println((char)code);
+        System.out.println((char) code);
     }
 }

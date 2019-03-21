@@ -31,7 +31,7 @@ public class Main {
         method.invoke(user, 33);
         System.out.println(user.getAge());
 
-        User newUser = (User)aClass.newInstance();
+        User newUser = (User) aClass.newInstance();
         System.out.println(newUser.getAge() + " " + newUser.getName());
 
         Constructor<User> constructor = aClass.getConstructor(String.class, int.class);

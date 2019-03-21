@@ -56,7 +56,7 @@ public class UsersServiceImpl implements UsersService {
     public void login(LoginForm loginForm) {
         User user = usersRepository.findOneByEmail(loginForm.getEmail());
         if (!passwordEncoder.matches(loginForm.getPassword(), user.getHashPassword())) {
-             throw new IllegalArgumentException("Wrong password or email");
+            throw new IllegalArgumentException("Wrong password or email");
         }
     }
 }

@@ -24,7 +24,7 @@ public class Main {
         proxyFactory.addAdvice(new BeforeTimeAdvice());
         proxyFactory.addAdvice(new MethodAdvice());
         proxyFactory.addAdvice(new ThrowsAdviceImpl());
-        LoopClass proxy = (LoopClass)proxyFactory.getProxy();
+        LoopClass proxy = (LoopClass) proxyFactory.getProxy();
 
 //        proxy.longLoop();
         proxy.someError();

@@ -17,6 +17,7 @@ public class GreetServer {
 
     /**
      * Запуск сокет-сервера
+     *
      * @param port порт, на котором нужно запустить сокет-сервер
      */
     public void start(int port) {
@@ -38,8 +39,7 @@ public class GreetServer {
             if ("hello server".equals(greeting)) {
                 // в ответ пишем hello client
                 out.println("hello client");
-            }
-            else {
+            } else {
                 out.println("unrecognised greeting");
             }
         } catch (Exception e) {

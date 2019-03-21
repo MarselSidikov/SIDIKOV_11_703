@@ -16,7 +16,7 @@ public class MainWriteOneByteOnCyrillic {
     public static void main(String[] args) throws IOException {
         OutputStream outputStream = new FileOutputStream("output.txt", true);
         char c = 'П';
-        outputStream.write((byte)c);
+        outputStream.write((byte) c);
         outputStream.close();
     }
 }

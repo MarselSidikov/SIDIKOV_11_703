@@ -23,7 +23,7 @@ public class ArrayList<T> implements List<T> {
     private int count;
 
     public ArrayList() {
-        this.elements = (T[])(new Object[DEFAULT_SIZE]);
+        this.elements = (T[]) (new Object[DEFAULT_SIZE]);
         this.count = 0;
     }
 
@@ -105,10 +105,10 @@ public class ArrayList<T> implements List<T> {
     public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
         for (int i = list.size() - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (list.get(j).compareTo(list.get(j+1)) > 0) {
+                if (list.get(j).compareTo(list.get(j + 1)) > 0) {
                     E temp = list.get(j);
-                    list.set(j, list.get(j+1));
-                    list.set(j+1, temp);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
                 }
             }
         }
@@ -117,10 +117,10 @@ public class ArrayList<T> implements List<T> {
     public static <E> void sort(ArrayList<E> list, Comparator<E> comparator) {
         for (int i = list.size() - 1; i >= 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (comparator.compare(list.get(j), list.get(j+1)) > 0) {
+                if (comparator.compare(list.get(j), list.get(j + 1)) > 0) {
                     E temp = list.get(j);
-                    list.set(j, list.get(j+1));
-                    list.set(j+1, temp);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
                 }
             }
         }

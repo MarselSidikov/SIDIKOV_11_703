@@ -17,9 +17,9 @@ import java.io.OutputStream;
  * OutputStream - абстрактный класс для вывода информации
  * в поток
  * Имеет метод
- *
+ * <p>
  * public abstract void write(int b)
- *
+ * <p>
  * Если значение b больше значения байта, старшие биты обрезаются
  * public void write(byte b[]) - для записи массива байтов
  */

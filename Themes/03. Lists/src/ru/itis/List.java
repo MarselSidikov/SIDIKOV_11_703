@@ -14,6 +14,7 @@ package ru.itis;
 public interface List<T> extends Collection<T>, Iterable<T> {
     /**
      * Находит элемент в коллекции
+     *
      * @param element
      * @return индекс элемента, если он найден, -1 в противном случае
      */
@@ -21,6 +22,7 @@ public interface List<T> extends Collection<T>, Iterable<T> {
 
     /**
      * Получить элемент по индексу
+     *
      * @param index
      * @return элемент под заданным индексом
      */

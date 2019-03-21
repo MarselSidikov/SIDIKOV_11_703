@@ -42,14 +42,14 @@ public class Main {
         URL url = new URL("file:\\" + classFolder + "\\");
         URLClassLoader loader = URLClassLoader.newInstance(new URL[]{url}, getClass().getClassLoader());
         Files
-                    .list(Paths.get(url.toURI().normalize()))
-                    .forEach(file -> {
-                        try {
-                            Class aClass = loader.loadClass("User");
-                            System.out.println(aClass.getName());
-                        } catch (Exception e) {
-                            throw new IllegalArgumentException(e);
-                        }
-                    });
+                .list(Paths.get(url.toURI().normalize()))
+                .forEach(file -> {
+                    try {
+                        Class aClass = loader.loadClass("User");
+                        System.out.println(aClass.getName());
+                    } catch (Exception e) {
+                        throw new IllegalArgumentException(e);
+                    }
+                });
     }
 }

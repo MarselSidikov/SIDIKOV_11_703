@@ -11,7 +11,7 @@ import java.io.*;
  */
 public class MainWriter {
     public static void main(String[] args) throws IOException {
-        Writer writer = new OutputStreamWriter(new FileOutputStream("output.txt",true));
+        Writer writer = new OutputStreamWriter(new FileOutputStream("output.txt", true));
         writer.write('П');
         writer.close();
     }

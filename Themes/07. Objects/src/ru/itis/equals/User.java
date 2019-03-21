@@ -32,7 +32,7 @@ public class User {
             return true;
         }
 
-        User that = (User)object;
+        User that = (User) object;
         return this.age == that.age && this.height == that.height;
     }
 }

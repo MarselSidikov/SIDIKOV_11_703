@@ -16,7 +16,9 @@ import java.util.List;
  */
 public interface UsersService {
     void register(UserForm userForm);
+
     boolean isRegistered(User user);
+
     List<UserDto> getAllUsers();
 
     void login(LoginForm loginForm);

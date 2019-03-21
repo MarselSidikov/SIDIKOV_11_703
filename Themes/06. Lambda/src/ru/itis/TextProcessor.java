@@ -15,7 +15,7 @@ public class TextProcessor {
         this.lines = lines;
     }
 
-    public void process(LineProcessRule rule ) {
+    public void process(LineProcessRule rule) {
         for (int i = 0; i < lines.length; i++) {
             lines[i] = rule.process(lines[i]);
         }

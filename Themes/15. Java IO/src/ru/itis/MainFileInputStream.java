@@ -17,28 +17,28 @@ import java.util.Arrays;
  * Stream.out
  * Stream.in
  * Stream.err
- *
+ * <p>
  * InputStream - абстрактный класс, описывающий логику
  * работы с потоками
- *
+ * <p>
  * Метод считывает значение байта из потока.
  * Если с потока считать нельзя, метод возвращает
  * -1. Чтобы не было коллизий с байтом, имеющим
  * значение 255 возвращается int. Таким образом значение возвращаемого
  * байта лежит в диапазоне 0-255.
  * public abstract int read() throws IOException;
- *
+ * <p>
  * Считывает массив байтов из потока в массив b
  * Возвращает сколько считал
  * public int read(byte b[]) throws IOException
- *
+ * <p>
  * Класс InputStream имеет абстрактный метод, который
  * должен описывать процесс считывания байтов.
  * Остальные методы не абстрактные, поскольку
  * содержат логику с использованием абстрактного read()
- *
+ * <p>
  * FileInputStream
- *
+ * <p>
  * Используется для файлов обычно нетекстовых
  */
 public class MainFileInputStream {
@@ -55,7 +55,7 @@ public class MainFileInputStream {
             Path pathOfFile = Paths.get("input.txt");
             long sizeOfFile = Files.size(pathOfFile);
 
-            byte bytes[] = new byte[(int)sizeOfFile];
+            byte bytes[] = new byte[(int) sizeOfFile];
 
             input.read(bytes);
             String lineFromFile = new String(bytes);
