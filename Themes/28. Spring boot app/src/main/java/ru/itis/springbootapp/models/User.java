@@ -26,7 +26,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String email;
+
+    @Column(length = 300)
     private String passwordHash;
-    private Integer age;
+
+    private String firstName;
+    private String lastName;
 }
