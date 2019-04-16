@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    @Qualifier("my")
+    @Qualifier("customUserDetailsService")
     private UserDetailsService userDetailsService;
 
     @Override
@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/signUp").permitAll()
+                .antMatchers("/confirm/**").permitAll()
                 .antMatchers("/hello").authenticated()
                 .and()
                 .formLogin()
@@ -43,7 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/signIn?error")
                 .permitAll()
                 .defaultSuccessUrl("/hello")
-                .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/signIn")
                 .permitAll();

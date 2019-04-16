@@ -3,6 +3,7 @@ package ru.itis.springbootapp.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import ru.itis.springbootapp.models.User;
+import ru.itis.springbootapp.models.UserState;
 
 import java.util.Collection;
 
@@ -46,7 +47,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return user.isEnabled();
     }
 
     public User getUser() {

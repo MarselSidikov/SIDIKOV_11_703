@@ -33,4 +33,13 @@ public class User {
 
     private String firstName;
     private String lastName;
+
+    @Enumerated(value = EnumType.STRING)
+    private UserState state;
+
+    private String confirmString;
+
+    public boolean isEnabled() {
+        return this.getState().equals(UserState.CONFIRMED);
+    }
 }

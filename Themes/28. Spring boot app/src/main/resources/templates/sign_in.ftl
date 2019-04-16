@@ -9,6 +9,9 @@
     <form method="post">
         <fieldset>
             <legend>Sign In</legend>
+            <#if error??>
+                <h1>Неправильный логин или пароль</h1>
+            </#if>
             <label for="email"><span>Email <span class="required">*</span></span><input type="email"
                                                                                         class="input-field"
                                                                                         name="email"
