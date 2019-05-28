@@ -13,9 +13,6 @@ public class HelloController {
     @GetMapping("/hello")
     @ResponseBody
     public String getHello(Authentication authentication) {
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        User user = userDetails.getUser();
-        System.out.println(user);
         return "Hello";
     }
 }
