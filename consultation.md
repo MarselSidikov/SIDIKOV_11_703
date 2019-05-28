@@ -6,3 +6,4 @@ MVP vs MVC - https://habr.com/ru/post/171925/
 AOP на аннотациях - https://www.baeldung.com/spring-aop-pointcut-tutorial
 IO and NIO - https://habr.com/ru/post/235585/
 RPC - https://stackoverflow.com/questions/2728495/what-is-the-difference-between-java-rmi-and-rpc
+Карирование - http://prgssr.ru/development/vvedenie-v-karrirovanie-v-javascript.html
